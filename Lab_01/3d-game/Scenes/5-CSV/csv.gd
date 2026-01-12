@@ -12,7 +12,7 @@ func save_to_csv(is_sprinting : bool, coins_collected : int):
 	var file_path = "user://game_data.csv"
 	var file_exists = FileAccess.file_exists(file_path)
 
-	var file = FileAccess.open(file_path, FileAccess.WRITE_READ)
+	var file = FileAccess.open(file_path, FileAccess.READ_WRITE)
 	file.seek_end()
 
 	# Write header only once
