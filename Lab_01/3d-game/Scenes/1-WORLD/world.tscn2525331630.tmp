@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfst5poiropcy"]
+[gd_scene load_steps=11 format=3 uid="uid://cfst5poiropcy"]
 
 [ext_resource type="PackedScene" uid="uid://dj31ga0ynrh52" path="res://Scenes/2-Player/PLAYER.tscn" id="1_104nc"]
 [ext_resource type="Script" uid="uid://ja1ypot0j84j" path="res://Scenes/1-WORLD/world.gd" id="1_dxeb8"]
-[ext_resource type="PackedScene" uid="uid://dqj34ch3t42l4" path="res://Scenes/3-Enemy/Enemy.tscn" id="4_dxeb8"]
+[ext_resource type="PackedScene" uid="uid://dqj34ch3t42l4" path="res://Scenes/3-Enemy/enemy.tscn" id="2_v4q3i"]
+[ext_resource type="PackedScene" uid="uid://1cxti72mh6ew" path="res://Scenes/4-Spawner/spawner.tscn" id="2_xcixc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ee3h5"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -40,14 +41,6 @@ environment = SubResource("Environment_v4q3i")
 
 [node name="Player" parent="." instance=ExtResource("1_104nc")]
 
-[node name="Enemy" parent="." node_paths=PackedStringArray("Player") instance=ExtResource("4_dxeb8")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2.21433, 0.174558, -0.0514052)
-Player = NodePath("../Player")
-
-[node name="Enemy2" parent="." node_paths=PackedStringArray("Player") instance=ExtResource("4_dxeb8")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 4.02657, 0.174558, -0.329461)
-Player = NodePath("../Player")
-
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_v4q3i")
 
@@ -72,5 +65,8 @@ use_collision = true
 size = Vector3(20, 0.144, 20)
 material = SubResource("StandardMaterial3D_ee3h5")
 
-[node name="End_Game" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.602428, 0.798173, 0, -0.798173, 0.602428, 0, 7.0445, 8.63189)
+[node name="Node3D" parent="." instance=ExtResource("2_xcixc")]
+enemy = ExtResource("2_v4q3i")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("2_v4q3i")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -1.53713, 0.174557, -2.32585)

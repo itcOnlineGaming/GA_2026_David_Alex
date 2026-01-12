@@ -38,3 +38,12 @@ func _physics_process(delta):
 		velocity.z = 0.0
 	
 	move_and_slide()
+	
+
+
+		
+
+
+func _on_hit_box_area_shape_entered(area_rid: RID, area: Area3D, area_shape_index: int, local_shape_index: int) -> void:
+	if area && area.name == "Enemy_HitBox":
+		player.queue_free()
