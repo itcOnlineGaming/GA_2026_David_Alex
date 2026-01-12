@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfst5poiropcy"]
+[gd_scene load_steps=10 format=3 uid="uid://cfst5poiropcy"]
 
 [ext_resource type="PackedScene" uid="uid://dj31ga0ynrh52" path="res://Scenes/2-Player/PLAYER.tscn" id="1_104nc"]
 [ext_resource type="Script" uid="uid://ja1ypot0j84j" path="res://Scenes/1-WORLD/world.gd" id="1_dxeb8"]
-[ext_resource type="Script" uid="uid://cj4dns7nwtyeb" path="res://Scenes/1-WORLD/end_game.gd" id="4_1clu2"]
 [ext_resource type="PackedScene" uid="uid://kwoipehmue4m" path="res://Scenes/3-Enemy/Enemy.tscn" id="4_dxeb8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ee3h5"]
@@ -75,42 +74,3 @@ material = SubResource("StandardMaterial3D_ee3h5")
 
 [node name="End_Game" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.602428, 0.798173, 0, -0.798173, 0.602428, 0, 7.0445, 8.63189)
-script = ExtResource("4_1clu2")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="End_Game"]
-
-[node name="Coin Collector" type="Label" parent="End_Game/CanvasLayer"]
-visible = false
-offset_left = 496.0
-offset_top = 300.0
-offset_right = 636.0
-offset_bottom = 323.0
-scale = Vector2(1.5, 1.5)
-text = "Collected Coins : 0"
-
-[node name="Time" type="Label" parent="End_Game/CanvasLayer"]
-visible = false
-offset_left = 498.0
-offset_top = 272.0
-offset_right = 638.0
-offset_bottom = 295.0
-scale = Vector2(1.5, 1.5)
-text = "Time : 0"
-
-[node name="Restart" type="Label" parent="End_Game/CanvasLayer"]
-visible = false
-offset_left = 444.0
-offset_top = 341.0
-offset_right = 597.0
-offset_bottom = 364.0
-scale = Vector2(2, 2)
-text = "Press to  'R'  Restart"
-
-[node name="Lose" type="Label" parent="End_Game/CanvasLayer"]
-visible = false
-offset_left = 456.0
-offset_top = 196.0
-offset_right = 609.0
-offset_bottom = 219.0
-scale = Vector2(2, 2)
-text = "YOU LOSE !!!!!"
