@@ -29,7 +29,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92354, -0.14146)
 
 [node name="Camera3D" type="Camera3D" parent="HEAD"]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.158205, -0.080729)
+current = true
 near = 0.001
+
+[node name="CanvasLayer" type="CanvasLayer" parent="HEAD/Camera3D"]
+
+[node name="Coin Collector" type="Label" parent="HEAD/Camera3D/CanvasLayer"]
+offset_left = -2.0
+offset_top = 30.0
+offset_right = 138.0
+offset_bottom = 53.0
+text = "Collected Coins : 0"
+
+[node name="Time" type="Label" parent="HEAD/Camera3D/CanvasLayer"]
+offset_top = 2.0
+offset_right = 140.0
+offset_bottom = 25.0
+text = "Time : 0"
 
 [node name="Hit_box" type="Area3D" parent="."]
 
@@ -37,4 +53,8 @@ near = 0.001
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_wd05c")
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="area_shape_entered" from="Hit_box" to="." method="_on_hit_box_area_shape_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

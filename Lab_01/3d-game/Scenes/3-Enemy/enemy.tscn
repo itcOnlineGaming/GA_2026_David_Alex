@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqj34ch3t42l4"]
+[gd_scene load_steps=6 format=3 uid="uid://c8otbt3bl87sk"]
 
-[ext_resource type="Script" uid="uid://dkpo8l4bvrhc1" path="res://Scenes/3-Enemy/Enemy.gd" id="1_lml0w"]
+[ext_resource type="Script" uid="uid://dy3jdcdoxbpcj" path="res://Scenes/3-Enemy/enemy.gd" id="1_eca61"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eca61"]
 albedo_color = Color(1, 0, 0, 1)
@@ -15,7 +15,7 @@ height = 2.01052
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
-script = ExtResource("1_lml0w")
+script = ExtResource("1_eca61")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_4gyqm")

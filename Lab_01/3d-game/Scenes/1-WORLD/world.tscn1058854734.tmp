@@ -1,10 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://cfst5poiropcy"]
+[gd_scene load_steps=10 format=3 uid="uid://cfst5poiropcy"]
 
 [ext_resource type="PackedScene" uid="uid://dj31ga0ynrh52" path="res://Scenes/2-Player/PLAYER.tscn" id="1_104nc"]
 [ext_resource type="Script" uid="uid://ja1ypot0j84j" path="res://Scenes/1-WORLD/world.gd" id="1_dxeb8"]
-[ext_resource type="Script" uid="uid://sa5g5jc875pt" path="res://Scenes/1-WORLD/end_game.gd" id="4_1clu2"]
-[ext_resource type="PackedScene" uid="uid://c8otbt3bl87sk" path="res://Scenes/3-Enemy/enemy.tscn" id="4_dxeb8"]
-[ext_resource type="Script" path="res://Scenes/1-WORLD/coin_points.gd" id="5_1clu2"]
+[ext_resource type="PackedScene" uid="uid://kwoipehmue4m" path="res://Scenes/3-Enemy/Enemy.tscn" id="4_dxeb8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ee3h5"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -24,12 +22,10 @@ vertices = PackedVector3Array(5.6697, 1.32544, -9.62937, 5.6697, 1.32544, -8.129
 polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(8, 5, 9), PackedInt32Array(9, 5, 6), PackedInt32Array(11, 10, 4), PackedInt32Array(4, 10, 7), PackedInt32Array(2, 3, 11), PackedInt32Array(11, 3, 10), PackedInt32Array(9, 0, 8), PackedInt32Array(8, 0, 1), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_104nc"]
-albedo_color = Color(0, 1, 0.278431, 1)
+albedo_color = Color(1, 1, 0.278431, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ee3h5"]
 albedo_color = Color(0, 0.52549, 0.458824, 1)
-
-[sub_resource type="GDScript" id="GDScript_dxeb8"]
 
 [node name="World" type="Node"]
 script = ExtResource("1_dxeb8")
@@ -45,7 +41,7 @@ environment = SubResource("Environment_v4q3i")
 [node name="Player" parent="." instance=ExtResource("1_104nc")]
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("Player") instance=ExtResource("4_dxeb8")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2.21433, 0.174558, 3.6967)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2.21433, 0.174558, -0.0514052)
 Player = NodePath("../Player")
 
 [node name="Enemy2" parent="." node_paths=PackedStringArray("Player") instance=ExtResource("4_dxeb8")]
@@ -78,62 +74,3 @@ material = SubResource("StandardMaterial3D_ee3h5")
 
 [node name="End_Game" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.602428, 0.798173, 0, -0.798173, 0.602428, 0, 7.0445, 8.63189)
-script = ExtResource("4_1clu2")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="End_Game"]
-
-[node name="Coin Collector" type="Label" parent="End_Game/CanvasLayer"]
-visible = false
-offset_left = 496.0
-offset_top = 300.0
-offset_right = 636.0
-offset_bottom = 323.0
-scale = Vector2(1.5, 1.5)
-text = "Collected Coins : 0"
-
-[node name="Time" type="Label" parent="End_Game/CanvasLayer"]
-visible = false
-offset_left = 498.0
-offset_top = 272.0
-offset_right = 638.0
-offset_bottom = 295.0
-scale = Vector2(1.5, 1.5)
-text = "Time : 0"
-
-[node name="Restart" type="Label" parent="End_Game/CanvasLayer"]
-visible = false
-offset_left = 444.0
-offset_top = 341.0
-offset_right = 597.0
-offset_bottom = 364.0
-scale = Vector2(2, 2)
-text = "Press to  'R'  Restart"
-
-[node name="Lose" type="Label" parent="End_Game/CanvasLayer"]
-visible = false
-offset_left = 456.0
-offset_top = 196.0
-offset_right = 609.0
-offset_bottom = 219.0
-scale = Vector2(2, 2)
-text = "YOU LOSE !!!!!"
-
-[node name="SpawnPositions" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.66416, 0, 3.75023)
-script = ExtResource("5_1clu2")
-
-[node name="1" type="Node3D" parent="SpawnPositions"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.254649, 0, -7.9286)
-
-[node name="2" type="Node3D" parent="SpawnPositions"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.41615, 0, -7.13057)
-
-[node name="3" type="Node3D" parent="SpawnPositions"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.43075, 0, -1.3397)
-
-[node name="4" type="Node3D" parent="SpawnPositions"]
-unique_name_in_owner = true
-script = SubResource("GDScript_dxeb8")
