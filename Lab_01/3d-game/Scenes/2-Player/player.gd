@@ -10,8 +10,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var player: CharacterBody3D = $"."
 
 
-func ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+func _init() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED_HIDDEN)
 	
 	
 func _unhandled_input(event):
@@ -29,7 +29,6 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("left","right","up","down")
 	var direction = (player.transform.basis * Vector3(input_dir.x,0,input_dir.y)).normalized()
 	if direction:
-		
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
