@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://ja1ypot0j84j" path="res://Scenes/1-WORLD/world.gd" id="1_dxeb8"]
 [ext_resource type="Script" uid="uid://sa5g5jc875pt" path="res://Scenes/1-WORLD/end_game.gd" id="4_1clu2"]
 [ext_resource type="PackedScene" uid="uid://c8otbt3bl87sk" path="res://Scenes/3-Enemy/enemy.tscn" id="4_dxeb8"]
-[ext_resource type="Script" uid="uid://5c2amw02iqbs" path="res://Scenes/1-WORLD/coin_points.gd" id="5_1clu2"]
+[ext_resource type="Script" path="res://Scenes/1-WORLD/coin_points.gd" id="5_1clu2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ee3h5"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
