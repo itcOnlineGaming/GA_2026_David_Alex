@@ -15,6 +15,10 @@ run/main_scene="uid://cfst5poiropcy"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Csv="*res://Scenes/5-CSV/csv.gd"
+
 [display]
 
 window/stretch/mode="viewport"

@@ -20,10 +20,13 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var coin_collector: Label = $"HEAD/Camera3D/CanvasLayer/Coin Collector"
 @onready var time: Label = $HEAD/Camera3D/CanvasLayer/Time
-var number_time : int = 0
-var collected_Coin : int = 0
 
-func _init() -> void:
+@onready var end_game: Camera3D = $"../End_Game"
+
+@export var number_time : int = 0
+@export var collected_Coin : int = 0
+
+func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	currentSprintRemaining = SPRINT_TIME
 	SPEED = WALK_SPEED
@@ -41,7 +44,7 @@ func _unhandled_input(event):
 		player.rotate_y(-event.relative.x * SENSITIVITY.x)
 		camera.rotate_x(-event.relative.y * SENSITIVITY.y)
 		camera.rotation.x = clamp(camera.rotation.x,deg_to_rad(-40),deg_to_rad(60))
-
+		
 func _process(delta: float) -> void:
 	time.text = "Time : " + str(number_time)
 	
@@ -67,6 +70,7 @@ func _process(delta: float) -> void:
 			SPEED = WALK_SPEED
 			
 
+	coin_collector.text = "Collected Coins : " + str(collected_Coin)
 
 func _physics_process(delta):
 	
@@ -88,6 +92,7 @@ func _physics_process(delta):
 
 func _on_hit_box_area_shape_entered(area_rid: RID, area: Area3D, area_shape_index: int, local_shape_index: int) -> void:
 	if area && area.name == "Enemy_HitBox":
+		end_game._death()
 		player.queue_free()
 		
 	if area && area.name == "Coin_Hitbox":
@@ -97,8 +102,12 @@ func _on_hit_box_area_shape_entered(area_rid: RID, area: Area3D, area_shape_inde
 func _on_timer_timeout() -> void:
 	number_time = number_time + 1
 	
-func get_Coins()-> int:
-	return collected_Coin
 	
-func get_time()-> int:
+func get_Coins() -> int:
+	return collected_Coin
+
+func get_sprinting() -> bool:
+	return sprintMode
+
+func get_time() -> int:
 	return number_time
