@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-const SPEED : float = 5.0
-const SENSITIVITY : float = 0.003
+@export var SPEED : float = 5.0
+@export var SENSITIVITY : Vector2 = Vector2(0.001,0.003)
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -16,8 +16,8 @@ func _init() -> void:
 	
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
-		player.rotate_y(-event.relative.x * SENSITIVITY)
-		camera.rotate_x(-event.relative.y * SENSITIVITY)
+		player.rotate_y(-event.relative.x * SENSITIVITY.x)
+		camera.rotate_x(-event.relative.y * SENSITIVITY.y)
 		camera.rotation.x = clamp(camera.rotation.x,deg_to_rad(-40),deg_to_rad(60))
 
 
@@ -36,3 +36,12 @@ func _physics_process(delta):
 		velocity.z = 0.0
 	
 	move_and_slide()
+	
+
+
+		
+
+
+func _on_hit_box_area_shape_entered(area_rid: RID, area: Area3D, area_shape_index: int, local_shape_index: int) -> void:
+	if area && area.name == "Enemy_HitBox":
+		player.queue_free()
