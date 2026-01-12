@@ -1,6 +1,16 @@
 extends CharacterBody3D
 
 @export var SPEED : float = 5.0
+@export var WALK_SPEED : float = 4.0
+
+@export var SPRINT_SPEED: float = 10.0
+@export var SPRINT_TIME: float = 0.5
+@export var SLOW_SPEED: float = 1.0
+
+var sprinting: bool = false
+var sprintFull: bool = true
+var currentSprintRemaining: float = 0.0
+@export var sprintMode: bool = true
 @export var SENSITIVITY : Vector2 = Vector2(0.001,0.003)
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -15,7 +25,16 @@ var collected_Coin : int = 0
 
 func _init() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
+	currentSprintRemaining = SPRINT_TIME
+	SPEED = WALK_SPEED
+	var random = RandomNumberGenerator.new()
+	random.randomize()
+	var num = random.randi_range(0,1)
+	if num == 0:
+		sprintMode = true
+	else:
+		sprintMode = false
+	
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -25,6 +44,29 @@ func _unhandled_input(event):
 
 func _process(delta: float) -> void:
 	time.text = "Time : " + str(number_time)
+	
+	if Input.is_action_just_pressed("Sprint"):
+		sprinting = true
+		
+	if Input.is_action_just_released("Sprint"):
+		sprinting = false
+		
+	if sprinting and sprintMode and sprintFull:
+		if currentSprintRemaining > 0:
+			currentSprintRemaining -= delta
+			SPEED = SPRINT_SPEED
+	if currentSprintRemaining <= 0:
+		sprintFull = false
+		SPEED = SLOW_SPEED
+	if sprintMode:
+		if not sprinting:
+			currentSprintRemaining += delta
+		if currentSprintRemaining >= SPRINT_TIME:
+			sprintFull = true
+			currentSprintRemaining = SPRINT_TIME
+			SPEED = WALK_SPEED
+			
+
 
 func _physics_process(delta):
 	

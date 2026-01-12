@@ -9,7 +9,7 @@ extends Camera3D
 
 
 func _process(delta: float) -> void:
-	time.text = "Time : " + str()
+	#time.text = "Time : " + str()
 	
 	
 	if (!player):
