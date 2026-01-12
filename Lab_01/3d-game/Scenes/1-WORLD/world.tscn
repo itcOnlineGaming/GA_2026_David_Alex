@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfst5poiropcy"]
+[gd_scene load_steps=10 format=3 uid="uid://cfst5poiropcy"]
 
 [ext_resource type="PackedScene" uid="uid://dj31ga0ynrh52" path="res://Scenes/2-Player/PLAYER.tscn" id="1_104nc"]
 [ext_resource type="PackedScene" uid="uid://dqj34ch3t42l4" path="res://Scenes/3-Enemy/enemy.tscn" id="2_v4q3i"]
 [ext_resource type="PackedScene" uid="uid://1cxti72mh6ew" path="res://Scenes/spawner.tscn" id="2_xcixc"]
-[ext_resource type="PackedScene" uid="uid://bcf76k223mw28" path="res://Scenes/4-COINS/Coin.tscn" id="4_dxeb8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ee3h5"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -66,6 +65,3 @@ material = SubResource("StandardMaterial3D_ee3h5")
 
 [node name="Node3D" parent="." instance=ExtResource("2_xcixc")]
 enemy = ExtResource("2_v4q3i")
-
-[node name="Coin" parent="." instance=ExtResource("4_dxeb8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8042, 0.474557, -1.08554)
